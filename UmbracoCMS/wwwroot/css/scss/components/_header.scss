@@ -1,0 +1,45 @@
+@import '../colors/_colors.scss';
+@import '../misc/_all-misc.scss';
+
+header {
+    .container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .content {
+            display: flex;
+            align-items: center;
+            gap: 200px;
+
+            .nav {
+                ul {
+                    display: flex;
+                    justify-content: center;
+                    gap: 70px;
+                    list-style-type: none;
+
+                    li {
+                        transition: transform 0.3s ease;
+
+                        a {
+                            color: $main-gray;
+                            font-weight: 700;
+                            font-size: 16px;
+                        }
+
+                        &:hover {
+                            transition: transform 0.3s ease;
+                            transform: scale(1.1);
+                        }
+
+                        &.current {
+                            a {
+                                color: $dark-yellow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

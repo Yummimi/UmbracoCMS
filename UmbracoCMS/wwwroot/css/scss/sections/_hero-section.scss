@@ -1,0 +1,319 @@
+@import '../colors/_colors.scss';
+@import '../components/_all-components.scss';
+@import '../misc/_all-misc.scss';
+
+body {
+    a {
+        text-decoration: none;
+    }
+
+    .section-title {
+        @include secondary-heading
+    }
+
+    p {
+        @include standard-text
+    }
+
+    .text-xs {
+        @include text-xs
+    }
+
+    .text-s {
+        @include text-s
+    }
+
+    .text-m {
+        @include text-m
+    }
+
+    .text-lg {
+        @include text-lg
+    }
+
+    .text-xl {
+        @include text-xl
+    }
+
+    h1 {
+        @include h1
+    }
+
+    h2 {
+        @include h2
+    }
+
+    h3 {
+        @include h3
+    }
+
+    h4 {
+        @include h4
+    }
+
+    h5 {
+        @include h5
+    }
+
+    h6 {
+        @include h6
+    }
+}
+
+#home-page {
+    #hero-section {
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .container {
+            a {
+                @include btn-primary
+            }
+
+            p {
+                @include text-m
+            }
+        }
+    }
+
+    #about-us {
+        .container {
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-content: start;
+                gap: 10px;
+                width: 40%;
+
+                .signature-container {
+                    .signature {
+                        .signature-image {
+                            opacity: 0;
+                            transform: translateX(-50px);
+                            animation: slideIn 1s forwards;
+                        }
+                    }
+                }
+
+                .quote {
+                    @include quote
+                }
+
+                h2 {
+                    padding-bottom: 15px;
+                }
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    #our-services {
+        background-color: $background-gray;
+
+        .section-title {
+            padding-top: 90px;
+            text-align: center;
+        }
+
+        .container {
+            padding-top: 0;
+        }
+    }
+
+    #our-story {
+        .container {
+            position: relative;
+            padding-bottom: 0;
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+
+                .title-box {
+                    text-align: center;
+
+                    .title-yellow {
+                        color: $dark-yellow;
+                    }
+                }
+
+                p {
+                    width: 60%;
+                    text-align: center;
+                }
+
+                a {
+                    @include btn-primary;
+                }
+
+
+                .dotmap-image {
+                    position: absolute;
+                    bottom: 350px;
+                    z-index: -1;
+                }
+
+                .background-image {
+                    padding-top: 200px;
+                }
+            }
+        }
+    }
+
+    #success-stories {
+        background-color: $main-gray;
+
+        .container {
+            position: relative;
+
+            p {
+                color: $white;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+
+                .title-box {
+                    text-align: center;
+
+                    h2 {
+                        color: $white;
+                    }
+                }
+
+                .number-box {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+
+                        .number {
+                            font-size: 100px;
+                            font-weight: 600;
+                            color: $dark-yellow;
+                        }
+
+                        .text-lg {
+                            font-weight: 600;
+                            width: 90%;
+                        }
+                    }
+                }
+
+                .dotmap-image {
+                    position: absolute;
+                    top: 120px;
+                    z-index: 0;
+                }
+
+                .background-image {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    #our-projects {
+        .container {
+            padding-right: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+
+            .top-title {
+                padding-left: 400px;
+                padding-bottom: 20px;
+            }
+
+            .projects {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+
+                .item {
+                    height: 480px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    .title-box {
+                        height: auto;
+                        width: 25%;
+                        position: absolute;
+                        bottom: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 20px;
+                        background-color: rgba(79, 89, 85, 0.58);
+                        color: $white;
+                        transition: background-color 0.5s ease-in-out;
+
+                        &:hover {
+                            background-color: $main-gray;
+                            height: 25%;
+                            transition: background-color 0.5s ease-in-out;
+
+                            .title {
+
+                                h6 {
+                                    color: $dark-yellow;
+                                    font-weight: 700;
+                                }
+                            }
+
+                            i {
+                                visibility: visible;
+                                font-size: 2rem;
+                            }
+                        }
+
+                        .title {
+                            display: flex;
+                            flex-direction: column;
+
+                            h6 {
+                                color: $white;
+                            }
+                        }
+
+                        i {
+                            visibility: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

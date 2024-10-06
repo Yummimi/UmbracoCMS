@@ -1,0 +1,44 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+    var pageTitle = !string.IsNullOrEmpty(ViewBag.Title) ? $"{ViewBag.Title} | Onatrix - Financial Solutions for Your Business" : "Onatrix - Financial Solutions for Your Business";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="~/css/scss/main.css"/>
+    <script defer src="/scripts/main.js"></script>
+    <title>@pageTitle</title>
+</head>
+
+<body>
+	
+	<div class="wrapper">
+		<section id="topbar">
+			@await Html.PartialAsync("partials/static/topbar.cshtml")
+		</section>
+
+		<header>
+			@await Html.PartialAsync("partials/static/header.cshtml")
+		</header> 
+
+		<main>
+			@RenderBody()
+		</main>
+
+		<footer>
+			@await Html.PartialAsync("partials/static/footer.cshtml")
+		</footer>
+	</div>
+</body>
+
+
+
+</html>

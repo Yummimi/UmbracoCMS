@@ -1,0 +1,55 @@
+﻿@import '../colors/_colors.scss';
+@import '../misc/_all-misc.scss';
+@import '../components/_buttons.scss';
+
+#our-services {
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .service-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                width: 50%;
+                margin: 0;
+                padding-bottom: 35px;
+            }
+
+            .content-box {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 30px;
+
+                a {
+
+                    div {
+                        background-color: $white;
+
+                        h5 {
+                            padding: 30px;
+                        }
+
+                        p {
+                            color: $main-gray;
+                            padding: 30px;
+                        }
+
+                        img {
+                            transition: transform 0.3s ease;
+                        }
+                    }
+
+                    &:hover img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}

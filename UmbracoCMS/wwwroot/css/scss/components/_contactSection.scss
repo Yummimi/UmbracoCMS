@@ -1,0 +1,70 @@
+@import '../colors/_colors.scss';
+@import '../misc/_all-misc.scss';
+
+#contact {
+    background-color: $background-gray;
+    position:relative;
+    z-index: -3;
+
+    .container {
+        padding-bottom: 0;
+        padding-top: 30px;
+
+        .content {
+            display: grid;
+            gap: 200px;
+            grid-template-columns: 1fr 1fr;
+
+            .image-box {
+                position: relative;
+                background-repeat: no-repeat;
+                background-size: contain;
+                height: 700px;
+
+                img {
+                    position: absolute;
+                }
+
+                .shape {
+                    bottom: 0;
+                    z-index: -1;
+                }
+
+                .dots {
+                    bottom: 0;
+                    right: 0;
+                    z-index: -2;
+                }
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+
+                h2 {
+                    width: 80%
+                }
+
+                .contact-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 30px;
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .address, .phone, .email {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var companyLogos = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "companyLogos") ?? null;
+    var images = new string[] { "image1", "image2", "image3", "image4", "image5", "image6" };
+}    
+    
+    <div class="container">
+        
+        <div class="companies">
+        @foreach (var imageField in images)
+        {
+            var image = companyLogos?.Value<IPublishedContent>(imageField)?.Url() ?? "";
+            if (!string.IsNullOrEmpty(image) && image != "No image found")
+            {
+                <img src="@image" alt="">
+            }
+        }
+        </div>
+    </div>

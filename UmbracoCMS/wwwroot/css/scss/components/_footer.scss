@@ -1,0 +1,25 @@
+@import '../colors/_colors.scss';
+
+footer {
+    background-color: $black;
+
+    .container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .content {
+            display: flex;
+            align-items: center;
+
+            .text {
+                color: $main-gray;
+
+                a {
+                    text-decoration: none;
+                    color: $dark-yellow;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,144 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+	var backgroundImage = Model?.Value<IPublishedContent>("heroBackgroundImage")?.Url() ?? "";
+	var signatureImage = Model?.Value<IPublishedContent>("aboutSignatureImage")?.Url() ?? "";
+    var ourStoryBackgroundImage = Model?.Value<IPublishedContent>("ourStoryBackgroundImage")?.Url() ?? "";
+    var ourStoryDotMapImage = Model?.Value<IPublishedContent>("ourStoryDotMapImage")?.Url() ?? "";
+    var successSectionImage = Model?.Value<IPublishedContent>("successSectionImage")?.Url() ?? "";
+
+    var ProjectItemTemplate = Umbraco.Content(Guid.Parse("dfe73702-904a-413a-836f-660d4cbd6733"));
+
+    var selection = Umbraco.Content(Guid.Parse("bd9749a5-01b6-44b6-bc90-34942f839ae3"))
+    .ChildrenOfType("ProjectItemTemplate")
+    .Where(x => x.IsVisible());
+}
+
+<article id="home-page">
+
+
+    @* <section id="hero-section" class="hero">
+    <img class="background-image" src="@backgroundImage" alt="">
+    <div class="container">
+    <div class="hero-content">
+    <h1 class="headline">@Model?.Value("heroHeadline")</h1>
+    <p class="ingress">@Model?.Value("heroText")</p>
+    <div>
+    <a href="@Model?.Value("heroButtonUrl")" class="btn-primary">@Model?.Value("heroButtonText")</a>
+    </div>
+    </div>
+    </div>
+    </section> *@
+
+    <section id="about-us" class="about-us">
+        <div class="container">
+            <div class="content">
+                <div class="headline">
+                    <p class="section-title">@Model?.Value("aboutSectionTitle")</p>
+                    <h2>@Model?.Value("aboutHeadline")</h2>
+                </div>
+                <blockquote class="quote">@Model?.Value("aboutQuote")</blockquote>
+                <p>@Model?.Value("aboutText")</p>
+                <div class="signature-container">
+                    <div class="signature">
+                        <img class="signature-image" src="@signatureImage" alt="@Model?.Value("aboutSignature")">
+                        <div class="clarification">
+                            <p class="name">@Model?.Value("aboutSignature")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container">
+            </div>
+        </div>
+    </section>
+
+    <section id="our-services" class="services">
+        <p class="section-title">@Model?.Value("servicesSectionTitle")</p>
+        @await Html.PartialAsync("partials/static/serviceComponent.cshtml")
+    </section>
+
+    <section id="our-story" class="our-story">
+        <div class="container">
+            <div class="content">
+                <div class="title-box">
+                    <h2>@Model?.Value("ourStoryTitle")</h2>
+                    <h2 class="title-yellow">@Model?.Value("ourStoryTitleYellow")</h2>
+                </div>
+                <p class="text-m">@Model?.Value("ourStoryText")</p>
+                <a href="@Model?.Value("ourStoryButtonUrl")" class="btn-primary text-m">@Model?.Value("ourStoryButtonText")</a>
+                <img class="background-image" src="@ourStoryBackgroundImage" alt="">
+                <img class="dotmap-image" src="@ourStoryDotMapImage" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section id="success-stories" class="success-stories">
+        <div class="container">
+            <div class="content">
+                <div class="title-box">
+                    <p class="section-title">@Model.Value("successSectionSecondaryTitle")</p>
+                    <h2 class="title-yellow">@Model?.Value("successSectionTitle")</h2>
+                </div>
+                <div class="number-box">
+                    <div>
+                        <p class="number">@Model.Value("successSection689")</p>
+                        <p class="text-lg">@Model.Value("successSection689Text")</p>
+                    </div>
+                    <div>
+                        <p class="number">@Model.Value("successSection370")</p>
+                        <p class="text-lg">@Model.Value("successSection370Text")</p>
+                    </div>
+                    <div>
+                        <p class="number">@Model.Value("successSection125")</p>
+                        <p class="text-lg">@Model.Value("successSection125Text")</p>
+                    </div>
+                </div>
+                <img class="background-image" src="@successSectionImage" alt="">
+                <img class="dotmap-image" src="@ourStoryDotMapImage" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section id="our-projects">
+        <div class="container">
+
+            <div class="top-title">
+                <p class="section-title">@Model.Value("projectsSectionPageTitle")</p>
+                <h2 class="headline">@Model.Value("projectsSectionPageHeadline")</h2>
+            </div>
+
+            <div class="projects">
+                @foreach (var item in selection)
+                {
+                    var image = item?.Value<IPublishedContent>("projectThumbnailImage")?.Url() ?? "";
+                    var title = item?.Name();
+
+                    <a href="@item?.Url()">
+                        <div class="item">
+                            <img src="@image" alt="@title">
+                            <div class="title-box">
+                                <div class="title">
+                                    <h6>@title</h6>
+                                    <p>@Model.Value("projectsSectionButtonText")</p>
+                                </div>
+                                <div class="arrow-right">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="company-logos">
+        @await Html.PartialAsync("partials/static/companies.cshtml")
+    </section>
+</article>
+
+

@@ -1,0 +1,234 @@
+@import '../colors/_colors.scss';
+@import '../components/_all-components.scss';
+@import '../misc/_all-misc.scss';
+
+body {
+    a {
+        text-decoration: none;
+    }
+
+    .section-title {
+        @include secondary-heading
+    }
+
+    p {
+        @include standard-text
+    }
+
+    .text-xs {
+        @include text-xs
+    }
+
+    .text-s {
+        @include text-s
+    }
+
+    .text-m {
+        @include text-m
+    }
+
+    .text-lg {
+        @include text-lg
+    }
+
+    .text-xl {
+        @include text-xl
+    }
+
+    h1 {
+        @include h1
+    }
+
+    h2 {
+        @include h2
+    }
+
+    h3 {
+        @include h3
+    }
+
+    h4 {
+        @include h4
+    }
+
+    h5 {
+        @include h5
+    }
+
+    h6 {
+        @include h6
+    }
+}
+
+
+#projects-page {
+    #page-title {
+        background-color: $background-gray;
+
+        .content {
+            height: 300px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    #projects {
+        .container {
+
+            .content {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 50px;
+
+                .items {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    a {
+                        text-decoration: none;
+
+                        .item {
+                            display: flex;
+                            overflow: hidden;
+                            transition: transform 0.3s ease;
+                            gap: 20px;
+                            padding-bottom: 20px;
+                            border-bottom: 2px solid $background-gray;
+
+                            &:hover {
+                                transform: translateY(-5px);
+                            }
+
+                            img {
+                                object-fit: none;
+                                height: 270px;
+                                width: 790px;
+                            }
+
+                            .title-box {
+                                width: 70%;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 100px;
+
+                                .title {
+                                    h5 {
+                                    }
+
+                                    p {
+                                        font-size: 0.9rem;
+                                        color: #666;
+
+                                        i {
+                                            margin-right: 5px;
+                                            color: #999;
+                                        }
+                                    }
+
+                                    .text {
+                                        padding-top: 10px;
+                                    }
+                                }
+
+                                .button {
+
+                                    p {
+                                        font-weight: 600;
+                                        color: $text-gray;
+
+                                        i {
+                                            margin-left: 5px;
+                                            color: $dark-yellow;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    a:last-of-type .item {
+                        border: none;
+                    }
+                }
+
+                .tags {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    padding-left: 30px;
+                    border-left: 2px solid $background-gray;
+
+                    .all-tags {
+
+                        h5 {
+                            margin-bottom: 10px;
+                        }
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+
+                            li {
+                                background-color: #ececec;
+                                display: inline-block;
+                                padding: 8px 15px;
+                                margin: 5px;
+                                border-radius: 5px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    .support {
+                        background-color: $main-gray;
+                        padding: 20px;
+                        width: 120%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                        border-radius: 2px;
+
+                        h5 {
+                            color: $light-yellow;
+                        }
+
+                        p {
+                            color: $white;
+                        }
+
+                        form {
+                            display: flex;
+                            align-items: center;
+                            background-color: #fff;
+                            border: 1px solid #ddd;
+                            padding: 5px 10px;
+                            border-radius: 5px;
+
+                            input {
+                                border: none;
+                                outline: none;
+                                flex: 1;
+                                font-size: 13px;
+                                font-style: italic;
+                                padding: 15px;
+                                color: $lighter-gray;
+                            }
+
+                            i {
+                                color: $main-gray;
+                                margin-left: 10px;
+                                font-size: 1.3rem;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

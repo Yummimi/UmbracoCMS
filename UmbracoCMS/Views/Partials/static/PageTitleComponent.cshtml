@@ -1,0 +1,14 @@
+﻿@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@model string
+@{
+    var pageTitle = Model?.Value<string>("pageTitle") ?? "";
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settings") ?? null;
+    var pageTitleImage = settings?.Value<IPublishedContent>("pageTitleImage")?.Url() ?? "";
+}
+
+<div class="page-title-component">
+    <h2>@Model</h2>
+    <img src="@pageTitleImage">
+</div>

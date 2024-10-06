@@ -1,0 +1,86 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+	var projectItemTemplate = Umbraco.Content(Guid.Parse("dfe73702-904a-413a-836f-660d4cbd6733"));
+
+    var selection = Umbraco.Content(Guid.Parse("bd9749a5-01b6-44b6-bc90-34942f839ae3"))
+    .ChildrenOfType("ProjectItemTemplate")
+    .Where(x => x.IsVisible());
+
+	var rootContents = UmbracoHelper.ContentAtRoot();
+	var settings = Umbraco.Content(Guid.Parse("7563f25d-b142-4048-b73c-66ee3ca61cc4"));
+
+	var pageTitleImage = settings?.Value<IPublishedContent>("pageTitleImage")?.Url() ?? "";
+
+
+	var date = projectItemTemplate?.Value<string>("projectDate") ?? "";
+	var text = projectItemTemplate?.Value<string>("projectText") ?? "";
+	var buttonText = projectItemTemplate?.Value<string>("projectButtonText") ?? "";
+
+	var tags = Model?.Value<IEnumerable<string>>("allTags");
+}
+
+<article id="projects-page">
+	<section id="page-title">
+		<div class="content" style="background-image: url('@pageTitleImage');">
+			<h2>@Model?.Value("pageTitle")</h2>
+		</div>
+	</section>
+	<section id="projects">
+		<div class="container">
+			<div class="content">
+				<div class="items">
+					@foreach (var item in selection)
+					{
+						var image = item?.Value<IPublishedContent>("projectThumbnailImage")?.Url() ?? "";
+						var title = item?.Name();
+
+						<a href="@item?.Url()">
+							<div class="item">
+								<img src="@image" alt="@title">
+								<div class="title-box">
+									<div class="title">
+										<h5 class="h5">@title</h5>
+										<p><i class="fa-solid fa-calendar-days"></i>@date</p>
+										<p class="text">@text</p>
+									</div>
+									<div class="button">
+										<p>@buttonText<i class="fa-solid fa-arrow-right"></i></p>
+									</div>
+								</div>
+							</div>
+						</a>
+					}
+				</div>
+				
+				<div class="tags">
+
+					<div class="all-tags">
+						<h5 class="h5">@Model.Value("tagsTitle")</h5>
+							<ul>
+								@foreach (var tag in tags)
+								{
+									<li>@tag</li>
+								}
+							</ul>
+					</div>
+
+					<div class="support">
+						<h5 class="h5">@Model.Value("supportTitle")</h5>
+						<p>@Model.Value("supportText")</p>
+						<form action="#" method="post">
+							<input type="email" placeholder="Email address" /><i class="fa-regular fa-envelope"></i>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="contact">
+		@await Html.PartialAsync("partials/static/contactSection.cshtml")
+	</section>
+</article>

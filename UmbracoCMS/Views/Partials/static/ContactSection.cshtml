@@ -1,0 +1,47 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+	var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settings") ?? null;
+    var contact = Umbraco.Content(Guid.Parse("c85ca8a4-d967-45f3-9256-096b27696a28"));
+
+	var imageMan = contact?.Value<IPublishedContent>("contactImageMan")?.Url() ?? "";
+	var imageShape = contact?.Value<IPublishedContent>("contactImageShape")?.Url() ?? "";
+	var imageDots = contact?.Value<IPublishedContent>("contactImageDots")?.Url() ?? "";
+
+	var pageTitle = contact?.Value<string>("contactPageTitle") ?? "";
+	var addressText = contact?.Value<string>("contactAddressText") ?? "";
+	var phoneText = contact?.Value<string>("contactPhoneText") ?? "";
+	var emailText = contact?.Value<string>("contactEmailText") ?? "";
+
+    var address = settings?.Value<string>("address") ?? "";
+	var phone = settings?.Value<string>("phoneNumber") ?? "";
+	var email = settings?.Value<string>("email") ?? "";
+}
+
+<div class="container">
+	<div class="content">
+		<div class="image-box" style="background-image: url('@imageMan');">
+			<img class="shape" src="@imageShape" alt=""/>
+			<img class="dots" src="@imageDots" alt=""/>
+		</div>
+		<div class="info">
+			<h2>@pageTitle</h2>
+			<div class="contact-info">
+				<div>
+					<p class="address">@addressText</p>
+					<p>@address</p>
+				</div>
+				<div>
+					<p class="phone">@phoneText</p>
+					<p>@phone</p>
+				</div>
+				<div>
+					<p class="email">@emailText</p>
+					<p>@email</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

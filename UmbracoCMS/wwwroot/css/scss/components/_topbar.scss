@@ -1,0 +1,37 @@
+@import '../colors/_colors.scss';
+
+#topbar {
+    background-color: $green-gray;
+
+    .container {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                color: $white;
+            }
+
+            .social-media {
+                display: flex;
+                align-items: center;
+
+                a {
+                    i {
+                        padding: 20px;
+                        border-right: 2px solid #606966;
+                        color: $white;
+                    }
+
+                    .fb {
+                        border-left: 2px solid #606966;
+                    }
+                }
+            }
+        }
+    }
+}

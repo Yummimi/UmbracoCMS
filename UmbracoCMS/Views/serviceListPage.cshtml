@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? "";
+
+	var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = Umbraco.Content(Guid.Parse("7563f25d-b142-4048-b73c-66ee3ca61cc4"));
+
+	var pageTitleImage = settings?.Value<IPublishedContent>("pageTitleImage")?.Url() ?? "";
+}
+
+<article id="service-page">
+
+	<section id="page-title">
+		<div class="content" style="background-image: url('@pageTitleImage');">
+			<h2>@Model?.Value("pageTitle")</h2>
+		</div>
+	</section>
+
+	<section id="our-services">
+		@await Html.PartialAsync("partials/static/serviceComponent.cshtml")
+	</section>
+
+	<section id="contact">
+		@await Html.PartialAsync("partials/static/contactSection.cshtml")
+	</section>
+
+</article>

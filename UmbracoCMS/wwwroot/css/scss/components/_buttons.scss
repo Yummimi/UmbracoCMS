@@ -1,0 +1,42 @@
+@import '../misc/_typography.scss';
+
+@mixin btn{
+    text-decoration: none;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 3px;
+    transition: transform 0.3s ease;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+@mixin btn-primary{
+    @include btn;
+    font-weight: 700;
+    color: $light-yellow;
+    background-color: $main-gray;
+}
+
+@mixin btn-yellow{
+    @include text-m;
+    @include btn;
+    font-weight: 700;
+    color: $main-gray;
+    background-color: $light-yellow;
+}
+
+@mixin btn-nav{
+    @include text-nav;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+    &:hover{
+        transform: scale(1.01);
+    }
+}

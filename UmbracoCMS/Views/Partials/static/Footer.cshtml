@@ -1,0 +1,17 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "footer") ?? null;
+
+    var text = settings?.Value<string>("footerText") ?? "";
+    var linkText = settings?.Value<string>("footerTextUrl") ?? "";
+    var url = settings?.Value<string>("footerUrl") ?? "";
+}    
+    
+<div class="container">
+    <div class="content">
+        <p class="text">@text <a href="@url" target="_blank">@linkText</a></p>
+    </div>
+</div>

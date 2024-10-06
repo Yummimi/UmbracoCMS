@@ -1,0 +1,42 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? "";
+
+	var rootContents = UmbracoHelper.ContentAtRoot();
+	var settings = Umbraco.Content(Guid.Parse("7563f25d-b142-4048-b73c-66ee3ca61cc4"));
+
+	var pageTitleImage = settings?.Value<IPublishedContent>("pageTitleImage")?.Url() ?? "";
+	var googleImage = Model?.Value<IPublishedContent>("googleMapUrl")?.Url() ?? "";
+}
+
+<article id="contact-page">
+	<section id="page-title">
+		<div class="content" style="background-image: url('@pageTitleImage');">
+			<h2>@Model?.Value("pageTitle")</h2>
+		</div>
+	</section>
+	<section id="contact">
+		@await Html.PartialAsync("partials/static/contactSection.cshtml")
+	</section>
+	<section class="form">
+		<div class="container">
+			<form action="#" method="post">
+				<div class="title-box">
+					<label>@Model.Value("sectionTitle")</label>
+					<h2>@Model.Value("formTitle")</h2>
+					<p>@Model.Value("formText")</p>
+				</div>
+				<div class="form-content">
+					<input type="text" placeholder="Name" />
+					<input type="text" placeholder="Phone" />
+					<input type="email" placeholder="Email" />
+					<input type="text" placeholder="@Model.Value("formDropdownText")" />
+				</div>
+				<button class="button">@Model.Value("formButtonText")</button>
+			</form>
+		</div>
+	</section>
+</article>
